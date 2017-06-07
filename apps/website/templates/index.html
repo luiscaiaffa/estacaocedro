@@ -1,0 +1,239 @@
+{% extends "site/base.html" %} 
+{% load staticfiles %}
+
+{% block css %}
+	<!-- Custom css -->
+	<link rel="stylesheet" href="/static/site/css/custom.css">
+{% endblock %}
+
+{% block content %}
+
+<div class="fh5co-hero">
+	<div class="fh5co-overlay"></div>
+	<div class="fh5co-cover text-center" data-stellar-background-ratio="0.5" style="background-image: url(/static/site/images/foto_0.jpg);">
+		<div class="desc animate-box">
+			<h2><strong>Ajude uma criança</strong> a  <strong>estudar</strong></h2>
+			<span>Faça parte dessa mudança</span>
+			<span><a class="btn btn-primary btn-lg" href="{% url 'website:doar' %}">Doe agora</a></span>
+		</div>
+	</div>
+</div>
+
+<!-- end:header-top -->
+<div id="fh5co-features">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4">
+
+				<div class="feature-left">
+					<span class="icon">
+						<i class="icon-profile-male"></i>
+					</span>
+					<div class="feature-copy">
+						<h3>Torne-se um voluntário</h3>
+						<p>Faça parte de nosso grupo tornando-se um voluntário.</p>
+						<p><a href="{% url 'website:doar'%}">Leia Mais</a></p>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="col-md-4">
+				<div class="feature-left">
+					<span class="icon">
+						<i class="icon-happy"></i>
+					</span>
+					<div class="feature-copy">
+						<h3>Acompanhe nossos eventos</h3>
+						<p>Ajude-nos a crescer acompanhe nossos eventos  e ajude na divulgação.</p>
+						<p><a href="{% url 'website:noticia-lista'%}">Leia Mais</a></p>
+					</div>
+				</div>
+
+			</div>
+			<div class="col-md-4">
+				<div class="feature-left">
+					<span class="icon">
+						<i class="icon-wallet"></i>
+					</span>
+					<div class="feature-copy">
+						<h3>Doações</h3>
+						<p>Doe! qualquer quantia auxilia muito nossa causa.</p>
+						<p><a href="{% url 'website:doar'%}">Leia Mais</a></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% if galeria %}
+<div id="fh5co-portfolio">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3 text-center heading-section animate-box">
+				<h3>Galeria de Fotos</h3>
+				<p>Acompanhe nosso trabalho, visite nossa galeria</p>
+			</div>
+		</div>
+		<div class="row row-bottom-padded-md">
+			<div class="col-md-12">
+				<ul id="fh5co-portfolio-list">
+					{% for imagem in galeria %}	
+						{% ifchanged imagem.album %}	
+							{% if forloop.counter == 1 or forloop.counter == 4 %}
+							<li class="two-third animate-box" data-animate-effect="fadeIn" style="background-image: url(/media/{{imagem.imagem}}); ">
+							{% else %}
+							<li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url(/media/{{imagem.imagem}}); ">
+							{% endif %}
+								<a href="{% url 'website:galeria' imagem.album.pk %}" class="color-3">
+									<div class="case-studies-summary">
+										<span>{{imagem.album.categoria}}</span>
+										<h2>{{imagem.album.titulo}}</h2>
+									</div>
+								</a>
+							</li>
+						{% endifchanged %}
+					{% endfor %}
+				</ul>		
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4 col-md-offset-4 text-center animate-box">
+				<a href="{% url 'website:galeria-lista' %}" class="btn btn-primary btn-lg">Ver galeria</a>
+			</div>
+		</div>
+	</div>
+</div>
+{% endif %}
+
+
+<div id="fh5co-content-section" class="fh5co-section-gray">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
+				<h3>Nossa Equipe</h3>
+				<p>Conheça melhor nossa equipe e as pessoas que fazem tornaram esta iniciativa possível.</p>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4">
+				<div class="fh5co-testimonial text-center animate-box">
+					<figure>
+						<img src="/static/site/images/person_1.jpg" alt="user">
+					</figure>
+					<blockquote>
+						<p>&ldquo;Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.&rdquo;</p>
+					</blockquote>
+					<span>Jean Doe, XYZ Co.</span>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="fh5co-testimonial text-center animate-box">
+					<figure>
+						<img src="/static/site/images/person_2.jpg" alt="user">
+					</figure>
+					<blockquote>
+						<p>&ldquo;Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.&rdquo;</p>
+					</blockquote>
+					<span>John Doe, XYZ Co.</span>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="fh5co-testimonial text-center animate-box">
+					<figure>
+						<img src="/static/site/images/person_3.jpg" alt="user">
+					</figure>
+					<blockquote>
+						<p>&ldquo;Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.&rdquo;</p>
+					</blockquote>
+					<span>John Doe, XYZ Co.</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- fh5co-content-section -->
+{% if projetos %}
+<div id="fh5co-services-section">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
+				<h3>Nossos Projetos</h3>
+				<p>Conheça nossos projetos e descubra quais são nossos planos para o futuro.</p>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row text-center">
+			{% for projeto in projetos %}
+				<div class="col-md-4 col-sm-4">
+					<div class="services animate-box">
+						<span><i class="icon-heart"></i></span>
+						<h3>{{projeto.titulo}}</h3>
+						<p>{{projeto.descricao|truncatechars:145}}</p>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>
+{% endif %}
+
+<!-- END What we do -->
+
+{% if publicacoes %}
+<div id="fh5co-blog-section" class="fh5co-section-gray">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
+				<h3>Ultimas Notícias</h3>
+				<p>
+					Acompanhe nossas atividades e os ultimos eventos realizados.
+				</p>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row row-bottom-padded-md">
+			{% for publicacao in publicacoes %}
+			<div class="col-lg-4 col-md-4 col-sm-6">
+				<div class="fh5co-blog animate-box">
+					<a href="{% url 'website:noticia' publicacao.pk %}">
+						<img class="img-responsive img-custom" src="/media/{{publicacao.imagem}}" alt="{{publicacao.titulo}}">
+					</a>
+					<div class="blog-text">
+						<div class="prod-title">
+							<h3>
+								<a href="{% url 'website:noticia' publicacao.pk %}">{{publicacao.titulo}}</a>
+							</h3>
+							<span class="posted_by">{{publicacao.data}}</span>
+							<p class="publicacao-resumo" title="{{publicacao.resumo}}">
+								{{publicacao.resumo|truncatechars:100}}
+							</p>
+							<p>
+								<a href="{% url 'website:noticia' publicacao.pk %}">Leia mais...</a>
+							</p>
+						</div>
+					</div> 
+				</div>
+			</div>
+			{% endfor %}
+			<div class="clearfix visible-md-block"></div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-4 col-md-offset-4 text-center animate-box">
+				<a href="{% url 'website:noticia-lista' %}" class="btn btn-primary btn-lg">Ver Mais</a>
+			</div>
+		</div>
+
+	</div>
+</div>
+{% endif %}
+
+{% endblock %}
+
+{% block javascript %}{% endblock %}

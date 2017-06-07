@@ -1,0 +1,235 @@
+{% extends "site/base.html" %} 
+{% load staticfiles %}
+
+{% block content %}
+
+<div class="fh5co-hero">
+	<div class="fh5co-overlay"></div>
+	<div class="fh5co-cover text-center" data-stellar-background-ratio="0.5" style="background-image: url(/static/site/images/cover_bg_2.jpg);">
+		<div class="desc animate-box">
+			<h2><strong>Doe!</strong> qualquer quantia ajuda muito.</h2>
+			<span><a class="btn btn-primary btn-lg find-doacao" href="">Doar</a></span>
+		</div>
+	</div>
+</div>
+
+<div id="fh5co-contact" class="animate-box">
+	<div class="container">
+		{% if message %}
+		<div class="row">
+			<div class="col-md-12 text-center heading-section">
+				<h3>Obrigado pela doação.</h3>
+				<p>
+					Se precisar entrar em contato ligue para <a href="tel:+5524992383471">(24) 99238-3471</a>, envie um email para <a href="mailto:cedroestacao@gmail.com">cedroestacao@gmail.com</a>, ou pelo no site clicando <a href="{% url 'website:contato' %}">aqui</a>.
+				</p>
+			</div>
+		</div>
+		{% endif %}
+		<form id="form-doacao" class="form-doacao" autocomplete="off" method="post" enctype="multipart/form-data" role="form">
+			{% csrf_token %}
+			<div class="row">
+				<div class="col-md-5" id="info-conta">
+					<h3 class="section-title">Doação mensal</h3>
+					<p>
+						Você pode doar entregando o termo de colaboração preenchido no escritório da Estação Cedro ou a partir dé nosso formulário.
+						<a href="/static/site/termo-de-adesao-ao-colaborador.pdf" download>Download do termo de colaboração.</a>
+					</p>					
+					<h3 class="section-title">Doação única</h3>
+					<p>Você também pode doar depositando direto em nossa conta:</p>
+					<ul class="contact-info">
+						<li>
+							<b>Banco:</b> Caixa Economica Federal
+						</li>
+						<li>
+							<b>Agencia:</b> 4146
+						</li>
+						<li>
+							<b>Conta:</b> 0003167-4
+						</li>
+						<li>
+							<b>CNPJ:</b> 26.034.212/0001-83
+						</li>
+					</ul>
+				</div>
+				<div class="col-md-7">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group">
+								{{ form.nome }}
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								{{ form.rg }}
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								{{ form.cpf }}
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="form-group">
+								{{ form.email }}
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								{{ form.telefone }}
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								{{ form.celular }}
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								{{ form.cep }}
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								{{ form.estado }}
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="form-group">
+								{{ form.rua }}
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								{{ form.bairro }}
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								{{ form.cidade }}
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								{{ form.valor }}
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								{{ form.modalidade }}
+							</div>
+						</div>
+						<div id="boleto" class="col-md-12 info-modalidade">
+							<div class="alert alert-warning">
+							<strong>Atenção!</strong> O boleto bancário sera enviado pela Estação Cedro mensalmente ao endereço indicado no formuĺário e após o pagamento será enviado para o mesmo o recibo de doação.
+							</div>
+						</div>
+						<div id="especie" class="col-md-12 info-modalidade">
+							<div class="alert alert-warning">
+							<strong>Atenção!</strong> O pagamento em espécie devera ser efetuado mensalmente ao escritório da Estação Cedro aonde será emitido o recibo de doação.
+							</div>
+						</div>
+						<div id="deposito" class="col-md-12 info-modalidade">
+							<div class="alert alert-warning">
+							<strong>Atenção!</strong> O pagamento em deposíto deverá ser efetuado mensalmente na conta da Estação Cedro (<a class="find-conta" href="">Informações na lateral esquerda da página</a>) e após a identificação do pagamento será enviado o recibo de doação para o endereço indicado no formuĺário.
+							</div>
+						</div>
+						<div id="debito" class="col-md-12 info-modalidade">
+							<div class="alert alert-warning">
+							<strong>Atenção!</strong> O débito automático será efetuado mensalmente sem nenhum acréscimo e após será enviado o recibo de doação para o endereço indicado no formuĺário. 
+							</div>
+						</div>
+						<h3 class="section-title debito-automatico">Informações de debito automático</h3>
+						<div class="col-md-12 debito-automatico">
+							<div class="form-group">
+								{{ form.cpf_cnpj }}
+							</div>
+						</div>
+						<div class="col-md-6 debito-automatico">
+							<div class="form-group">
+								{{ form.banco }}
+							</div>
+						</div>
+						<div class="col-md-6 debito-automatico">
+							<div class="form-group">
+								{{ form.conta }}
+							</div>
+						</div>
+						<div class="col-md-6 debito-automatico">
+							<div class="form-group">
+								{{ form.agencia }}
+							</div>
+						</div>
+						<div class="col-md-6 debito-automatico">
+							<div class="form-group">
+								{{ form.titular }}
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="form-group">
+								Ao clicar em "Enviar Doação", você estará aceitando o <a data-toggle="modal" data-target="#termos-de-colaboracao" href="">Termo de colaboração</a>.
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="form-group">
+								<input type="submit" value="Enviar doação" class="btn btn-primary">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+{% endblock %}
+
+{% block modals %}
+	{% include 'includes/modal-termos.html' %}
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript">
+$('.info-modalidade').hide();
+$('.debito-automatico').hide();
+$('.debito-automatico input').attr('data-validation', '');
+$('.form-doacao').validate({
+	messages: {
+        'NOTEMPTY': 'Por favor, preencha este campo.'
+    },
+    submit: {
+        settings: {
+			inputContainer : '.form-group',
+			errorListClass : 'form-error'
+        }
+    }
+});
+$(function(){
+	$('.find-doacao').click(function(event){
+		event.preventDefault()
+	    $('html,body').animate({scrollTop: $("#form-doacao").offset().top - 200},'slow');
+	});
+	$('.find-conta').click(function(event){
+		event.preventDefault()
+	    $('html,body').animate({scrollTop: $("#info-conta").offset().top - 200},'slow');
+	});
+	$('#{{form.modalidade.auto_id}}').change(function(event){
+		$('.info-modalidade').hide();
+		$('.debito-automatico').hide();
+		$('.debito-automatico input').attr('data-validation', '');
+
+		var modalidade = $('#{{form.modalidade.auto_id}}').val();
+		if(modalidade == '1'){
+			$('#boleto').show();
+		}else if(modalidade == '2'){
+			$('#especie').show();
+		}else if(modalidade == '3'){
+			$('#deposito').show();
+		}else if(modalidade == '4'){
+			$('#debito').show();
+			$('.debito-automatico').show();
+			$('.debito-automatico input').attr('data-validation', '[NOTEMPTY]');
+		}
+	});
+});
+</script>
+{% endblock %}

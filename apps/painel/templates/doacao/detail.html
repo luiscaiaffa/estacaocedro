@@ -1,0 +1,150 @@
+{% extends 'painel/base.html' %}
+{% load staticfiles %}
+{% block css %}
+<link rel="stylesheet" href="/static/painel/build/css/separate/pages/others.min.css">
+<link rel="stylesheet" href="/static/painel/build/css/separate/vendor/bootstrap-select/bootstrap-select.min.css">
+<link rel="stylesheet" href="/static/painel/build/css/separate/vendor/select2.min.css">
+{% endblock %}
+{% block content %}
+  <div class="box-typical box-typical-padding">
+    <div class="row">
+      <div class="col-lg-2 col-sm-4 text-center">
+        <h2 class="m-t-lg"><i class="text-muted font-icon font-icon-question"></i></h2>
+        <h5 class="m-b semibold">Doações</h5>
+        <p>
+          Você poderá ver todas as doações recebidas ao retornar para a tela de anterior.
+        </p>
+      </div>
+      <div class="col-lg-10 col-sm-8">
+        <h5 class="m-t-lg with-border">Doação</h5>
+        <div class="row">
+          <div class="col-lg-12">
+            <fieldset class="form-group">
+              <label class="form-label semibold" for="nome">Nome</label>
+              {{ form.nome }}
+            </fieldset>
+          </div>
+          <div class="col-lg-6">
+            <fieldset class="form-group">
+              <label class="form-label semibold" for="telefone">RG</label>
+              {{ form.rg }}
+            </fieldset>
+          </div>
+          <div class="col-lg-6">
+            <fieldset class="form-group">
+              <label class="form-label semibold" for="email">CPF</label>
+              {{ form.cpf }}
+            </fieldset>
+          </div>
+          <div class="col-lg-6">
+            <fieldset class="form-group">
+              <label class="form-label semibold" for="descricao">Telefone</label>
+              {{ form.telefone }}
+            </fieldset>
+          </div>
+          <div class="col-lg-6">
+            <fieldset class="form-group">
+              <label class="form-label semibold" for="descricao">Celular</label>
+              {{ form.celular }}
+            </fieldset>
+          </div>
+          <div class="col-lg-6">
+            <fieldset class="form-group">
+              <label class="form-label semibold" for="descricao">CEP</label>
+              {{ form.cep }}
+            </fieldset>
+          </div>
+          <div class="col-lg-6">
+            <fieldset class="form-group">
+              <label class="form-label semibold" for="descricao">UF</label>
+              {{ form.estado }}
+            </fieldset>
+          </div>
+          <div class="col-lg-12">
+            <fieldset class="form-group">
+              <label class="form-label semibold" for="descricao">Rua</label>
+              {{ form.rua }}
+            </fieldset>
+          </div>
+          <div class="col-lg-6">
+            <fieldset class="form-group">
+              <label class="form-label semibold" for="descricao">Bairro</label>
+              {{ form.bairro }}
+            </fieldset>
+          </div>
+          <div class="col-lg-6">
+            <fieldset class="form-group">
+              <label class="form-label semibold" for="descricao">Cidade</label>
+              {{ form.cidade }}
+            </fieldset>
+          </div>
+          <div class="col-lg-6">
+            <fieldset class="form-group">
+              <label class="form-label semibold" for="descricao">Valor (R$)</label>
+              {{ form.valor }}
+            </fieldset>
+          </div>
+          <div class="col-lg-6">
+            <fieldset class="form-group">
+              <label class="form-label semibold" for="descricao">Modalidade</label>
+              {{ form.modalidade }}
+            </fieldset>
+          </div>
+          {% if form.modalidade.value == '4' %}
+          <h5 class="m-t-lg with-border">Informações de debito automático</h5>
+          <div class="col-lg-6">
+              <fieldset class="form-group">
+                <label class="form-label semibold" for="descricao">Banco</label>
+                {{ form.banco }}
+              </fieldset>
+            </div>
+            <div class="col-lg-6">
+              <fieldset class="form-group">
+                <label class="form-label semibold" for="descricao">Conta</label>
+                {{ form.conta }}
+              </fieldset>
+            </div>
+            <div class="col-lg-6">
+              <fieldset class="form-group">
+                <label class="form-label semibold" for="descricao">Agência</label>
+                {{ form.agencia }}
+              </fieldset>
+            </div>
+            <div class="col-lg-6">
+              <fieldset class="form-group">
+                <label class="form-label semibold" for="descricao">Titular</label>
+                {{ form.titular }}
+              </fieldset>
+            </div>
+            <div class="col-lg-6">
+              <fieldset class="form-group">
+                <label class="form-label semibold" for="descricao">CPF/CNPJ</label>
+                {{ form.cpf_cnpj }}
+              </fieldset>
+            </div>
+          {% endif %}
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="form-group">
+                <a class="btn btn-danger" href="{% url 'painel:doacao-deletar' doacao %}">
+                  Deletar
+                </a>
+              <div class="pull-right">
+                <a class="btn btn-secondary-outline" href="{% url 'painel:doacao-listar' %}">
+                  Voltar
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+{% block javascript %}
+<script src="/static/painel/build/js/lib/bootstrap-select/bootstrap-select.min.js"></script>
+<script src="/static/painel/build/js/lib/select2/select2.full.min.js"></script>
+<script src="/static/painel/build/js/lib/html5-form-validation/jquery.validation.min.js"></script>
+<script src="/static/painel/build/js/lib/jquery-validation/localization/messages_pt_BR.min.js"></script>
+{% endblock %}
